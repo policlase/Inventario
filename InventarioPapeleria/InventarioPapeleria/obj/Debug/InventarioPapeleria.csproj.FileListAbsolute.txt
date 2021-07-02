@@ -124,3 +124,4 @@ C:\Users\USUARIO\source\repos\InventarioPapeleria\InventarioPapeleria\obj\Debug\
 C:\Users\USUARIO\source\repos\InventarioPapeleria\InventarioPapeleria\obj\Debug\InventarioPapeleria.csproj.CopyComplete
 C:\Users\USUARIO\source\repos\InventarioPapeleria\InventarioPapeleria\obj\Debug\InventarioPapeleria.dll
 C:\Users\USUARIO\source\repos\InventarioPapeleria\InventarioPapeleria\obj\Debug\InventarioPapeleria.pdb
+C:\Users\IVAN\Source\Repos\Inventario\InventarioPapeleria\InventarioPapeleria\obj\Debug\InventarioPapeleria.csproj.CoreCompileInputs.cache
