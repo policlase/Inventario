@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-auto-animate data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png">  <h1 style="margin-top: 100px; color: rgb(224, 222, 230);">Scrum</h1>
+				</section>
+				<section data-auto-animate data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png"> 
+					<h1 style="margin-top: 100px; color: rgb(224, 222, 230);">Scrum</h1>
+					<p>Es una metodología de trabajo ágil  que se diferencia de la cascada por ser por entregas parciales y de manera cíclica, que funciona para trabajar en equipo.  Dividiendo tareas y responsabilidades tomando en cuenta dificultad  y tiempo de cada tarea.</p> 
+				</section>
+				<section data-auto-animate data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png">
+					<h1 style="margin-top: 50px; color: rgb(230, 231, 235);">Backlog	</h1>
+					<section>Backlog es la herramienta que permite organizar el grupo de trabajo, entregar tareas, definir dificultad y responsabilidades a cada uno de sus integrantes. En ella se ponen y manejan los sprint de acuerdo al progreso que se haya hecho en el proyecto. 
+					</section>
+					<section data-background-image="https://slidesgratis.com/wp-content/uploads/portada-creativa-de-plantilla-de-powerpoint-presentacion.jpg"><img src="img/backlog.png" alt=""></section>
+				</section>
+
+
+				<section data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png">Historias de usuario
+					<section>las historias de usuario  permiten  desglosar los requerimientos del cliente para ser usados en backlog, de esta manera poder generar tareas y repartirlas entre sus integrantes.
+						<br>
+						Como : (se especifica las tareas que tiene cada sprint a detalle con su respectiva fecha de entrega).
+						
+						
+						<br>
+						Quiero:  (se explica el objetivo que quiere obtener con dichas tareas).
+						<br>
+						
+						Para que : (se da el motivo por el cual se va a realizar ese sprint).</section>
+						<section data-background-image="https://slidesgratis.com/wp-content/uploads/portada-creativa-de-plantilla-de-powerpoint-presentacion.jpg"><img src="img/husuario.png" alt=""></section>
+
+				</section>
+				<section data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png">Scrum daily
+					<section>El scrum daily es una reunión la mayoría de las veces diaria,  de 15 minutos o menos de duración , del equipo de desarrollo scrum, en el que se sincronizan las actividades que están ocurriendo en el sprint, y la planificación de las actividades de las próximas 24 horas. Se realiza con la intención de inspeccionar el trabajo realizado desde el anterior daily y también poder predecir el trabajo que se hará antes del siguiente.</section>
+				</section>
+				<section data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png">sprint
+
+					<section>Sprint es el nombre que va a recibir cada uno de los ciclos o iteraciones que vamos a tener  dentro de un proyecto Scrum.
+
+						Nos va a permitir manejar un ritmo de trabajo a un tiempo predeterminado, siendo la duración habitual de un Sprint unas cuatro semanas, aunque lo que la metodología dice es que debería estar entre dos semanas y un máximo de dos meses pero lo más preferible es tener cada tiempo del sprint por horas y no semanas para que no hayan confusiones .
+						
+						ejemplo de sprint en github <a href="https://github.com/orgs/policlase/projects/1">https://github.com/orgs/policlase/projects/1</a></section>
+						<section data-background-image="https://slidesgratis.com/wp-content/uploads/portada-creativa-de-plantilla-de-powerpoint-presentacion.jpg"><img src="img/sprint.png" alt=""></section>
+				</section>
+				<section data-background-image="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/11/15-Presentation-Background-Examples33.png">sprint reboot
+					<section>El sprint reboot se hace una vez el proyecto esté terminado o antes de la entrega, ya que el usuario puede requerir nuevos ajustes/requerimientos al proyecto por lo tanto se deberá hacer nuevamente el backlog y los sprint teniendo en cuenta las nuevas necesidades del usuario</section>
+					<section data-background-image="https://slidesgratis.com/wp-content/uploads/portada-creativa-de-plantilla-de-powerpoint-presentacion.jpg"><img src="img/sprintreb.png" alt=""></section>
+				</section>
+				<section>
+					<section> Codigo del controlador para el Login
+						<pre><code data-trim data-noescape data-line-numbers="5-10|16-20|21-30">
+							// POST: /Account/Login
+							[HttpPost]
+							[AllowAnonymous]
+							[ValidateAntiForgeryToken]
+							public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+							{
+								if (!ModelState.IsValid)
+								{
+									return View(model);
+								}
+					
+					 
+					
+								// No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
+								// Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
+								var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+								switch (result)
+								{
+									case SignInStatus.Success:
+										return RedirectToLocal(returnUrl);
+									case SignInStatus.LockedOut:
+										return View("Lockout");
+									case SignInStatus.RequiresVerification:
+										return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+									case SignInStatus.Failure:
+									default:
+										ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
+										return View(model);
+								}
+							}
+						</code></pre>
+					  </section>
+					 
+
+				</section>
+				<section> Vista del login
+                      <img src="img/login.png" alt="">
+
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
